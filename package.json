@@ -1,0 +1,44 @@
+{
+  "name": "real-time-web",
+  "version": "1.0.0",
+  "description": "Real Time Web course group project",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "watch": "concurrently --kill-others \"npm run watch:css\" \"npm run watch:js\"",
+    "build:js": "node scripts/build-js.js",
+    "build:css": "node scripts/build-css.js",
+    "watch:js": "chokidar \"src/client/js/*.js\" --c \"npm run build:js\"",
+    "watch:css": "chokidar \"src/client/styles/*.css\" --c \"npm run build:css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RickGroot/real-time-web-2021.git"
+  },
+  "keywords": [],
+  "author": "Rick Groot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RickGroot/real-time-web-2021/issues"
+  },
+  "homepage": "https://github.com/RickGroot/real-time-web-2021#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "node": "^15.12.0",
+    "node-fetch": "^2.6.1",
+    "socket.io": "^4.0.1"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^2.1.0",
+    "concurrently": "^6.0.0",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-minify": "^3.1.0",
+    "nodemon": "^2.0.7"
+  }
+}

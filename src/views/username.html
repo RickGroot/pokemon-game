@@ -1,0 +1,20 @@
+<%- include ('./partials/header.html') %>
+
+<header>
+    <h1>Hallo</h1>
+    <p>voer je username in</p>
+</header>
+
+<main>
+    <section>
+        <h2>Je username is "thisisme"</h2>
+        <a href="/game/<%= room %>/thisisme">Ga naar <%= room %></a>
+    </section>
+
+    <form action="/game/<%= room %>" method="GET">
+        <input type="text" name="username">
+        <input type="submit">
+    </form>
+</main>
+
+<%- include ('./partials/footer.html') %>

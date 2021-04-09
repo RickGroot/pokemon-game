@@ -1,0 +1,1 @@
+console.log("connected");let socket=io();socket&&console.log("socket connected to client");
