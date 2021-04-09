@@ -1,1 +1,1 @@
-console.log("connected");let socket=io();socket&&console.log("socket connected to client");
+console.log("connected");let socket=io(),room=document.getElementById("room").innerHTML,user=document.getElementById("user").innerHTML,userList=document.getElementById("userList");socket.emit("join",{room:room,user:user}),socket.on("userList",e=>{userList.innerHTML+="<p>"+e.user+"</p>"}),socket&&console.log("socket connected to client");

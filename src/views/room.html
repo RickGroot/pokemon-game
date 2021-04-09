@@ -1,13 +1,15 @@
 <%- include ('./partials/header.html') %>
 
 <header>
-    <h1>Hallo <%= user %></h1>
-    <p>Dit is <%= room %></p>
+    <h1>Hallo <span id="user"><%= user %></span></h1>
+    <p>Dit is <span id="room"><%= room %></span></p>
 </header>
 
 <main>
     <section>
         <a href="/">home</a>
+    </section>
+    <section id="userList">
     </section>
 </main>
 

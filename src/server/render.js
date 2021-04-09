@@ -5,23 +5,38 @@ const home = async (req, res) => {
 
     res.render('home', {
         title: 'Home',
-        rooms: rooms
+        rooms: rooms,
+        socket: false
     })
 }
 
-const room = async (req, res) => {     
+const room = async (req, res) => {
+    let thisRoom = req.params.room  
+    let user = req.params.user   
+    let roomData = await getRoom(thisRoom)
+
     res.render('room', {
         title: 'Room',
-        room: req.params.room,
-        user: req.body.username
+        room: thisRoom,
+        roomData: roomData,
+        user: user,
+        socket: true
     })
 }
 
 const setUserName = async (req, res) => {
     res.render('userName', {
         title: 'username',
-        room: req.params.room
+        room: req.params.room,
+        socket: false
     })
 }
 
-module.exports = {home, room, setUserName};
+const makeRoom = async (req, res) => {
+    res.render('makeRoom', {
+        title: "make new room",
+        socket: false
+    })
+}
+
+module.exports = {home, room, setUserName, makeRoom};
