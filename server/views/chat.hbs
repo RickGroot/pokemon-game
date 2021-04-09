@@ -1,0 +1,37 @@
+<div class="chat-container">
+    <header class="chat-header">
+        <h1>
+            <span>🚀</span>
+            StonksBot
+        </h1>
+        <a class="btn" id="leave-btn">Leave StonksRoom</a>
+    </header>
+    <main class="chat-main">
+        <div class="chat-sidebar">
+            <h3>
+                <i class="fas fa-users"></i>
+                Users
+            </h3>
+            <ul id="users"></ul>
+        </div>
+        <div class="chat-messages"></div>
+    </main>
+    <div class="chat-form-container">
+        <form id="chat-form">
+            <input autocomplete="off" id="msg" placeholder="Enter Message" required type="text" />
+            <button class="btn">
+                <span>
+                    <svg height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"
+                            fill="currentColor" />
+                    </svg>
+                </span>
+                Send
+            </button>
+        </form>
+    </div>
+</div>
+
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script src="js/main.js"></script>
