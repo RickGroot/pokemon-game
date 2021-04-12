@@ -23,6 +23,7 @@ This application uses the [PokéAPI](https://pokeapi.co/). The server fetches Po
 
 ### Data model
 This model illustrates a broad overview of the possibilities of the PokéAPI. It sows the different endpoints of this API.
+![Data-model](https://github.com/rickgroot/real-time-web-2021/blob/main/assets/data-model.png?raw=true)
 
 ### Data example
 ```js
@@ -76,6 +77,7 @@ const fetchURL = "https://pokeapi.co/api/v2/pokemon-form/374/";
 
 ## Data-flow diagram
 To get a better view of the stucture of this application, I made a diagram. This diagram illustrates the connections between client, sockets and API.
+![Data-flow](https://github.com/rickgroot/real-time-web-2021/blob/main/assets/data-flow.png?raw=true)
 
 ## Run Locally
 **In your terminal**, clone this project to your own computer:
@@ -97,6 +99,7 @@ Watch and build changes to CSS and client JS:
 ```bash
 $ npm run watch
 ```
+
 Start script:
 ```bash
 $ npm start
