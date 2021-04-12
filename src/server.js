@@ -34,23 +34,29 @@ function error(req, res) {
     })
 }
 
+const userNames = {}
+
 io.on('connection', (socket) => {
-    // console.log('a user has connected')
-    let id = socket.id
-    // console.log(id)
 
-    socket.on('join', function(room) {
-        socket.join(room)
-        let roomUsers = io.sockets.adapter.rooms[room]
-        // console.log(room.user, 'connected to', room.room)
+    socket.on('join', data => {
+        let userName = data.name
+        let userId = data.userId
+        let roomName = data.room
+        let roomData = []
+        socket.join(roomName)
+        userNames[userId] = {userName: userName, room: roomName}
 
-        // let roomUsers = io.sockets.clients(room)
-        console.log(roomUsers)
-        io.sockets.emit('userList', room)
+        for (const [key, value] of Object.entries(userNames)) {
+            if(value.room === roomName) {
+                roomData.push(userNames[key])
+            }
+        }
+        console.log(roomData)
+        io.sockets.in(roomName).emit('userList', roomData)
     })
 
     socket.on('disconnect', () => {
-        // console.log('user disconnected')
+        console.log(socket.id, 'disconnected')
     })
 })
 
