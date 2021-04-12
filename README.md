@@ -7,12 +7,10 @@ This game let's you guess the pokemon based on a darkened image. If you get the 
 [Work in progress]()
 
 ## Table of contents
-- [Synopsis](#synopsis)
-- [Description](#description)
-- [Communication](#communication)
-- [Goals](#goals)
-- [Grading](#grading)
-- [Programme](#programme)
+- [Features](#features)
+- [API](#api)
+- [Installation](#run-locally)
+- [Sketches](#sketches)
 
 ## Features
 - Play games with friends
@@ -105,7 +103,14 @@ Start script:
 $ npm start
 ```
 
+## Sketches
+| Sketch 1, game with multiple pokemon | Sketch 2, only fromt-view | Sketch 3, multiple choice  |
+| :---: | :---: | :---: |
+| ![sketch 1][sk1] | ![sketch 2][sk2] | ![sketch 3][sk3] |
 
+[sk1]: https://github.com/rickgroot/real-time-web-2021/blob/main/assets/sketch1.jpeg?raw=true "Sketch 1"
+[sk2]: https://github.com/rickgroot/real-time-web-2021/blob/main/assets/sketch2.jpeg?raw=true "Sketch 2"
+[sk3]: https://github.com/rickgroot/real-time-web-2021/blob/main/assets/sketch3.jpeg?raw=true "Sketch 3"
 
 
 
