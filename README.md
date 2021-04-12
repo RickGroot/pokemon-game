@@ -104,7 +104,7 @@ $ npm start
 ```
 
 ## Sketches
-| Sketch 1, game with multiple pokemon | Sketch 2, only fromt-view | Sketch 3, multiple choice  |
+| Sketch 1, game with multiple pokemon | Sketch 2, only front-view | Sketch 3, multiple choice  |
 | :---: | :---: | :---: |
 | ![sketch 1][sk1] | ![sketch 2][sk2] | ![sketch 3][sk3] |
 
