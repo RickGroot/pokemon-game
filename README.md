@@ -1,5 +1,111 @@
 # Real-Time Web @cmda-minor-web · 2020/21
 
+## Who's that pokemon?
+This game let's you guess the pokemon based on a darkened image. If you get the Pokémon right, you score a point. First to get 5 pokémon right wins!
+
+## Link to game
+[Work in progress]()
+
+## Table of contents
+- [Synopsis](#synopsis)
+- [Description](#description)
+- [Communication](#communication)
+- [Goals](#goals)
+- [Grading](#grading)
+- [Programme](#programme)
+
+## Features
+- Play games with friends
+- Create new rooms
+
+## API
+This application uses the [PokéAPI](https://pokeapi.co/). The server fetches Pokémon from this API, and sends it to the in-game clients. Whenever the Pokémon is guessed, the server fetches a new image and starts a new round. The APi sends images of the Pokémon, and the name. This data gets sent to the game-clients, which can now see the data in their game. The API data gets rendered on the page, and the round can start.
+
+### Data model
+This model illustrates a broad overview of the possibilities of the PokéAPI. It sows the different endpoints of this API.
+
+### Data example
+```js
+const fetchURL = "https://pokeapi.co/api/v2/pokemon-form/374/";
+```
+```json
+{
+    "form_name": "",
+    "form_names": [],
+    "form_order": 1,
+    "id": 374,
+    "is_battle_only": false,
+    "is_default": true,
+    "is_mega": false,
+    "name": "beldum",
+    "names": [],
+    "order": 506,
+    "pokemon": {
+        "name": "beldum",
+        "url": "https://pokeapi.co/api/v2/pokemon/374/"
+    },
+    "sprites": {
+        "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/374.png",
+        "back_female": null,
+        "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/374.png",
+        "back_shiny_female": null,
+        "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/374.png",
+        "front_female": null,
+        "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/374.png",
+        "front_shiny_female": null
+    },
+    "types": [{
+        "slot": 1,
+        "type": {
+            "name": "steel",
+            "url": "https://pokeapi.co/api/v2/type/9/"
+        }
+    }, {
+        "slot": 2,
+        "type": {
+            "name": "psychic",
+            "url": "https://pokeapi.co/api/v2/type/14/"
+        }
+    }],
+    "version_group": {
+        "name": "ruby-sapphire",
+        "url": "https://pokeapi.co/api/v2/version-group/5/"
+    }
+}
+```
+
+## Diagram
+To get a better view of the stucture of this application, I made a diagram. This diagram illustrates the connections between client, sockets and API.
+
+## Run Locally
+**In your terminal**, clone this project to your own computer:
+```bash
+$ git clone https://github.com/RickGroot/real-time-web-2021.git
+```
+
+Navigate to the right folder:
+```bash
+$ cd real-time-web-2021
+```
+
+Run code in dev environment:
+```bash
+$ npm run dev
+```
+
+Watch and build changes to CSS and client JS:
+```bash
+$ npm run watch
+```
+Start script:
+```bash
+$ npm start
+```
+
+
+
+
+
 ## Table of Contents
 - [Synopsis](#synopsis)
 - [Description](#description)
