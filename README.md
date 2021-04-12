@@ -74,7 +74,7 @@ const fetchURL = "https://pokeapi.co/api/v2/pokemon-form/374/";
 }
 ```
 
-## Diagram
+## Data-flow diagram
 To get a better view of the stucture of this application, I made a diagram. This diagram illustrates the connections between client, sockets and API.
 
 ## Run Locally
