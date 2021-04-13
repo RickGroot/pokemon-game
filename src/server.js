@@ -44,22 +44,25 @@ io.on('connection', (socket) => {
         let roomName = data.room
         
         socket.join(roomName)
-        userNames[userId] = {userName: userName, room: roomName}
+        userNames[userId] = {userName: userName, room: roomName, score: 0}
 
-        userList(roomName)
+        sendUsers(roomName)
+    })
+
+    socket.on('chat', data => {
+        console.log('message', data)
+        let room = data.room
+        io.sockets.in(room).emit('chat', data)
     })
 
     socket.on('disconnect', () => {
         let userId = socket.id
-        // let roomName = userNames[userId].room
-
         delete userNames[userId]
-
-        userList('room1')
+        sendUsers()
     })
 })
 
-function userList(room) {
+function sendUsers(room) {
     let roomData = []
 
     for (const [key, value] of Object.entries(userNames)) {

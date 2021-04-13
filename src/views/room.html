@@ -1,17 +1,33 @@
 <%- include ('./partials/header.html') %>
 
 <header>
-    <h1>Hallo <span id="user"><%= user %></span></h1>
-    <p>Dit is <span id="room"><%= room %></span></p>
+    <h1><span id="user"><%= user %></span></h1>
+    <p>Room name: <strong><span id="room"><%= room %></span></strong></p>
+    <a href="/">Back to home page</a>
 </header>
 
 <main>
-    <section>
-        <a href="/">home</a>
+    <section id="leaderboard">
+        <h2>Leaderboard</h2>
+        <div id="userList">
+
+        </div>
     </section>
-    <section id="userList">
+
+    <section id="pokemon">
+
     </section>
-    <button id="test">testbutton</button>
+
+    <section id="chat">
+        <h2>Guesses</h2>
+        <section id="output">
+
+        </section>
+        <form action="" id="form">
+            <input id="message" type="text" placeholder="Type your guess...">
+            <input type="submit" value="Guess...">
+        </form>
+    </section>
 </main>
 
 <%- include ('./partials/footer.html') %>
