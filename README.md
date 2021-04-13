@@ -21,7 +21,7 @@ This application uses the [PokéAPI](https://pokeapi.co/). The server fetches Po
 
 ### Data model
 This model illustrates a broad overview of the possibilities of the PokéAPI. It sows the different endpoints of this API.
-![Data-model](https://github.com/rickgroot/real-time-web-2021/blob/main/assets/data-model.png?raw=true)
+![Data-model](https://github.com/rickgroot/pokemon-game/blob/main/assets/data-model.png?raw=true)
 
 ### Data example
 ```js
@@ -75,17 +75,17 @@ const fetchURL = "https://pokeapi.co/api/v2/pokemon-form/374/";
 
 ## Data-flow diagram
 To get a better view of the stucture of this application, I made a diagram. This diagram illustrates the connections between client, sockets and API.
-![Data-flow](https://github.com/rickgroot/real-time-web-2021/blob/main/assets/data-flow.png?raw=true)
+![Data-flow](https://github.com/rickgroot/pokemon-game/blob/main/assets/data-flow.png?raw=true)
 
 ## Run Locally
 **In your terminal**, clone this project to your own computer:
 ```bash
-$ git clone https://github.com/RickGroot/real-time-web-2021.git
+$ git clone https://github.com/RickGroot/pokemon-game.git
 ```
 
 Navigate to the right folder:
 ```bash
-$ cd real-time-web-2021
+$ cd pokemon-game
 ```
 
 Run code in dev environment:
@@ -108,9 +108,9 @@ $ npm start
 | :---: | :---: | :---: |
 | ![sketch 1][sk1] | ![sketch 2][sk2] | ![sketch 3][sk3] |
 
-[sk1]: https://github.com/rickgroot/real-time-web-2021/blob/main/assets/sketch1.jpeg?raw=true "Sketch 1"
-[sk2]: https://github.com/rickgroot/real-time-web-2021/blob/main/assets/sketch2.jpeg?raw=true "Sketch 2"
-[sk3]: https://github.com/rickgroot/real-time-web-2021/blob/main/assets/sketch3.jpeg?raw=true "Sketch 3"
+[sk1]: https://github.com/rickgroot/pokemon-game/blob/main/assets/sketch1.jpeg?raw=true "Sketch 1"
+[sk2]: https://github.com/rickgroot/pokemon-game/blob/main/assets/sketch2.jpeg?raw=true "Sketch 2"
+[sk3]: https://github.com/rickgroot/pokemon-game/blob/main/assets/sketch3.jpeg?raw=true "Sketch 3"
 
 
 
@@ -138,7 +138,7 @@ $ npm start
 During this course you will learn how to build a real-time application. You will learn techniques to setup an open connection between the client and the server. This will enable you to send data in real-time both ways, at the same time.
 
 ## Communication
-- [Github](https://github.com/cmda-minor-web/real-time-web-2021)
+- [Github](https://github.com/cmda-minor-web/pokemon-game)
 - [Microsoft Teams](https://teams.microsoft.com/l/channel/19%3aeb75a05580374dfbb61a479e14cbcbe6%40thread.tacv2/06%2520-%2520Real-Time%2520Web?groupId=5d001f9a-0a4b-4768-92b1-0f1768328ba3&tenantId=0907bb1e-21fc-476f-8843-02d09ceb59a7)
 - [Brightspace](https://dlo.mijnhva.nl/d2l/le/content/275640/Home)
 

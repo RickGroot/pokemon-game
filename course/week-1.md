@@ -11,7 +11,7 @@ After all you learned so far, you now will learn how to build real-time applicat
 This is a team exercise which means you work together on one repository. (Of course you will all fork it if the work is done so you’ve got your own copy in your own portfolio ;)). During this course we will use *readme driven development* (RDD) which is a way of organising your work. Use this - relatively simple - assignment to get a grip on the way you set up a project in this course.
 
 ### Readme
-Start out by forking [this repository](https://github.com/cmda-minor-web/real-time-web-2021) to one of your github accounts. Add all your team members as collaborator so you can work together.
+Start out by forking [this repository](https://github.com/cmda-minor-web/pokemon-game) to one of your github accounts. Add all your team members as collaborator so you can work together.
 
 Read this [article about RDD](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) if you haven’t already and look at these [notes about RDD](https://deterministic.space/readme-driven-development.html) and [some of the examples in this gist](https://gist.github.com/stefanbirkner/835b7d0c498b4026f65a). Discuss findings, insights and/or allergies you encounter in with team. As you will be using markdown a lot when writing readme files you might want to freshen your knowledge by scanning [mastering markdown](https://guides.github.com/features/mastering-markdown/).
 

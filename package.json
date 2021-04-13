@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RickGroot/real-time-web-2021.git"
+    "url": "git+https://github.com/RickGroot/pokemon-game.git"
   },
   "keywords": [],
   "author": "Rick Groot",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RickGroot/real-time-web-2021/issues"
+    "url": "https://github.com/RickGroot/pokemon-game/issues"
   },
-  "homepage": "https://github.com/RickGroot/real-time-web-2021#readme",
+  "homepage": "https://github.com/RickGroot/pokemon-game#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
