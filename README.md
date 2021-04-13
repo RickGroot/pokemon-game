@@ -4,7 +4,7 @@
 This game let's you guess the pokemon based on a darkened image. If you get the Pokémon right, you score a point. First to get 5 pokémon right wins!
 
 ## Link to game
-[Work in progress]()
+[Enter a game here!](https://rick-groot-pokemon-game.herokuapp.com/)
 
 ## Table of contents
 - [Features](#features)
