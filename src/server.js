@@ -40,25 +40,36 @@ io.on('connection', (socket) => {
 
     socket.on('join', data => {
         let userName = data.name
-        let userId = data.userId
+        let userId = socket.id
         let roomName = data.room
-        let roomData = []
+        
         socket.join(roomName)
         userNames[userId] = {userName: userName, room: roomName}
 
-        for (const [key, value] of Object.entries(userNames)) {
-            if(value.room === roomName) {
-                roomData.push(userNames[key])
-            }
-        }
-        console.log(roomData)
-        io.sockets.in(roomName).emit('userList', roomData)
+        userList(roomName)
     })
 
     socket.on('disconnect', () => {
-        console.log(socket.id, 'disconnected')
+        let userId = socket.id
+        // let roomName = userNames[userId].room
+
+        delete userNames[userId]
+
+        userList('room1')
     })
 })
+
+function userList(room) {
+    let roomData = []
+
+    for (const [key, value] of Object.entries(userNames)) {
+        if(value.room === room) {
+            roomData.push(userNames[key])
+        }
+    }
+
+    io.sockets.in(room).emit('userList', roomData)
+}
 
 http.listen(port, () => {
     console.log('App listening on http://localhost:' + port)
