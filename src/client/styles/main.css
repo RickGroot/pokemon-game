@@ -48,7 +48,8 @@ main>section {
     max-height: 60vh;
 }
 
-#leaderboard {
+#leaderboard, #rooms {
+    position: relative;
     grid-area: 1 / 1 / 2 / 2;
 }
 
@@ -58,4 +59,14 @@ main>section {
 
 #chat {
     grid-area: 1 / 3 / 2 / 4;
+}
+
+#rooms a:last-child{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2em;
+    background-color: rgb(44, 44, 44);
+    color: white;
 }
