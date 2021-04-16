@@ -10,18 +10,23 @@ This game let's you guess the pokemon based on a darkened image. If you get the 
 - [Features](#features)
 - [API](#api)
 - [Installation](#run-locally)
+- [Spike](#spike)
 - [Sketches](#sketches)
+- [To-Do](#to-do)
 
 ## Features
-- Play games with friends
+- Play a game with friends
+- Guess the Pokémon in a live chat
 - Create new rooms
+- See user and user-scores in rooms
 
 ## API
 This application uses the [PokéAPI](https://pokeapi.co/). The server fetches Pokémon from this API, and sends it to the in-game clients. Whenever the Pokémon is guessed, the server fetches a new image and starts a new round. The APi sends images of the Pokémon, and the name. This data gets sent to the game-clients, which can now see the data in their game. The API data gets rendered on the page, and the round can start.
 
 ### Data model
-This model illustrates a broad overview of the possibilities of the PokéAPI. It sows the different endpoints of this API.
+This model illustrates a broad overview of the possibilities of the PokéAPI. It shows the different endpoints of this API.
 ![Data-model](https://github.com/rickgroot/pokemon-game/blob/main/assets/data-model.png?raw=true)
+(Data-model is still work in progress...)
 
 ### Data example
 ```js
@@ -103,6 +108,9 @@ Start script:
 $ npm start
 ```
 
+## Spike
+The spike for this project is using rooms. I made this functionality in the main application, on a different URL path. This saved me some time because I didn't need to make another project and implementation became more easy. For this spike I used the URL to define a room name, and then sent messages and active usernames to the clients in that room. 
+
 ## Sketches
 | Sketch 1, game with multiple pokemon | Sketch 2, only front-view | Sketch 3, multiple choice  |
 | :---: | :---: | :---: |
@@ -112,6 +120,11 @@ $ npm start
 [sk2]: https://github.com/rickgroot/pokemon-game/blob/main/assets/sketch2.jpeg?raw=true "Sketch 2"
 [sk3]: https://github.com/rickgroot/pokemon-game/blob/main/assets/sketch3.jpeg?raw=true "Sketch 3"
 
+## To-Do
+- [x] Make rooms
+- [x] Show active members in rooms
+- [ ] Implement API data
+- [ ] Make the "game" part of the game
 
 
 ## Table of Contents
