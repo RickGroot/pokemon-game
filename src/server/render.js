@@ -33,7 +33,7 @@ const setUserName = async (req, res) => {
 }
 
 const makeRoom = async (req, res) => {
-    res.render('makeroom', {
+    res.render('makeRoom', {
         title: "make new room",
         socket: false
     })
