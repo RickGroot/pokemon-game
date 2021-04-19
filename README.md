@@ -82,6 +82,13 @@ To get a better view of the stucture of this application, I made a diagram. This
 ![Data-flow](https://github.com/rickgroot/pokemon-game/blob/main/assets/data-flow.png?raw=true)
 (Data-model is still work in progress...)
 
+### Real time events
+- Joining users
+- Chat with guesses
+- Live user score
+
+Whenever a user joins it stores data into a variable on the server. This data is passed to the connected sockets and gets sent when a client connects. The chat is simple and uses sockets to sow data to every connected socket in a room. When a user guesses correctly the score is updated and sent to the clients in that room.
+
 ## Run Locally
 **In your terminal**, clone this project to your own computer:
 ```bash
@@ -126,6 +133,8 @@ The spike for this project is using rooms. I made this functionality in the main
 - [ ] Implement API data
 - [ ] Make the "game" part of the game
 
+# Licence
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Table of Contents
 - [Synopsis](#synopsis)

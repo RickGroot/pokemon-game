@@ -54,7 +54,30 @@ main>section {
 }
 
 #pokemon {
+    position: relative;
     grid-area: 1 / 2 / 2 / 3;
+    height: auto;
+}
+
+#pokemon #imgP {
+    position: absolute;
+    height: 100px;
+}
+
+.animate {
+    animation: pokemon 20s;
+}
+
+@keyframes pokemon {
+    0% {filter: brightness(0)}
+    60% {filter: brightness(0.2);}
+    100% {filter: brightness(1)}
+}
+
+#pokemon #back {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
 }
 
 #chat {
