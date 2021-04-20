@@ -130,8 +130,11 @@ The spike for this project is using rooms. I made this functionality in the main
 ## To-Do
 - [x] Make rooms
 - [x] Show active members in rooms
-- [ ] Implement API data
-- [ ] Make the "game" part of the game
+- [x] Implement API data
+- [x] Make the "game" part of the game
+- [x] Delete rooms when it has no users
+- [ ] Stop game after x amount of wins
+- [ ] Show a win screen
 
 # Licence
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
