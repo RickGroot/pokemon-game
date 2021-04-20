@@ -1,19 +1,18 @@
 <%- include ('./partials/header.html') %>
 
 <header>
-    <h1>Hallo</h1>
-    <p>Dit is een pagina met rooms</p>
+    <h1>Welkom bij Who's that Pokémon!</h1>
 </header>
 
-<main>
+<main id="home">
     <section id="rooms">
         <% rooms.forEach(room => { %>
         <a href="/username/<%= room %>"><%= room %></a>
         <% }); %>
+    </section>
+    <section id="newroom">
         <a href="/makeroom">Create new room</a>
     </section>
-    
-        
 </main>
 
 <%- include ('./partials/footer.html') %>

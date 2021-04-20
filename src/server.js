@@ -96,14 +96,31 @@ io.on('connection', (socket) => {
 
         userNames[userId].score = newScore
 
-        fetchNewPokemon(roomName)
         sendUsers(roomName)
-        io.sockets.in(roomName).emit('win', data.user)
+
+        if (newScore === 5) {
+            io.sockets.in(roomName).emit('gameWin', data.user)
+        } else {
+            fetchNewPokemon(roomName)
+            io.sockets.in(roomName).emit('win', data.user)
+        }
+    })
+
+    socket.on('noWin', room => {
+        fetchNewPokemon(room)
+        io.sockets.in(room).emit('noWin')
     })
 
     // ------------------------------------------------------ Request for new pokemon
     socket.on('request', data => {
         fetchNewPokemon(data)
+    })
+
+    socket.on('closeRoom', data => {
+        let room = data
+        deleteRoom(room)
+
+        io.sockets.in(room).emit('closeRoom')
     })
 
     // ------------------------------------------------------ When a user disconnects

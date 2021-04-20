@@ -5,11 +5,11 @@
     <p>voer je username in</p>
 </header>
 
-<main>
+<main id="userform">
     <h2>Kies een nickname</h2>
     <form action="/joinRoom/<%= room %>" method="post">
-        <input type="text" name="user">
-        <input type="submit">
+        <input type="text" name="user" placeholder="Nickname" required>
+        <input type="submit" value="Enter Room">
     </form>
 </main>
 

@@ -3,15 +3,20 @@ let socket = io()
 let socketConnection = io.connect()
 let room = document.getElementById('room').innerHTML
 let user = document.getElementById('user').innerHTML
-let score
 let userList = document.getElementById('userList')
 let message = document.getElementById('message')
 let form = document.getElementById('form')
 let output = document.getElementById('output')
+let pokemonField = document.getElementById('pokemon')
 let image = document.getElementById('imgP')
+let winTextTime = 3000
+let guessTime = 30000
 let pokemonData
+let score
+let noWin
 
 // ---------------------------------------------------------------------------------------------------------- emit events
+// ------------------------------------------------------- on connection to the room
 socketConnection.on('connect', () => {
     let userData = {
         name: user,
@@ -23,7 +28,7 @@ socketConnection.on('connect', () => {
     socket.emit('join', userData)
 })
 
-// when someone submits a guess
+// ------------------------------------------------------- when someone submits a guess
 form.onsubmit = ((e) => {
     e.preventDefault()
 
@@ -33,8 +38,9 @@ form.onsubmit = ((e) => {
         message: message.value,
     })
 
-    // if guess is correct
+    // ------------------------------------------------------- if guess is correct
     if (message.value.toLowerCase() === pokemonData.pokemon.name) {
+        clearTimeout(noWin)
         image.classList.remove('animate')
         addWin()
     }
@@ -43,7 +49,7 @@ form.onsubmit = ((e) => {
     return false
 })
 
-// add a win to live users score
+// ------------------------------------------------------- add a win to live users score
 function addWin() {
     // current score from document
     let score = document.querySelector('.thisUser .score').innerHTML
@@ -55,29 +61,103 @@ function addWin() {
     })
 }
 
+function notCorrect() {
+    socket.emit('noWin', room)
+}
+
+// ------------------------------------------------------- close current room and delete from server
+function closeRoom() {
+    socket.emit('closeRoom', room)
+}
+
 // ---------------------------------------------------------------------------------------------------------- listen for events from server
+// ------------------------------------------------------- update userlist
 socket.on('userList', data => updateList(data))
 
+// ------------------------------------------------------- update chat
 socket.on('chat', data => {
     output.innerHTML += '<p><strong>' + data.user + ': </strong>' + data.message + '</p>'
 })
 
-socket.on('win', data => {
-    output.innerHTML += '<p class="win"><strong>' + data + ' has guessed the pokemon!</strong></p>'
+// ------------------------------------------------------- emit win message and popup
+socket.on('win', user => {
+    output.innerHTML += '<p class="win"><strong>' + user + ' has guessed the Pokémon!</strong></p>'
+
+    let node = document.createElement('h3')
+    let text = document.createTextNode(user + ' has guessed correctly!')
+
+    node.id = 'winText'
+    node.appendChild(text)
+    pokemonField.appendChild(node)
+
+    //remove win text after some time
+    setTimeout(() => {
+        let winText = document.getElementById('winText')
+        winText.remove()
+    }, winTextTime)
 })
 
+socket.on('noWin', () => {
+    output.innerHTML += '<p class="win"><strong>Nobody has guessed correctly</strong></p>'
+
+    let node = document.createElement('h3')
+    let text = document.createTextNode('The Pokémon was ' + pokemonData.pokemon.name)
+
+    node.id = 'winText'
+    node.appendChild(text)
+    pokemonField.appendChild(node)
+
+    //remove win text after some time
+    setTimeout(() => {
+        let winText = document.getElementById('winText')
+        winText.remove()
+    }, winTextTime)
+})
+
+// ------------------------------------------------------- whena user has won
+socket.on('gameWin', user => {
+    let node = document.createElement('h3')
+    let text = document.createTextNode(user + ' has won the game!')
+
+    node.id = 'winText'
+    node.appendChild(text)
+    pokemonField.appendChild(node)
+    image.src = ''
+
+    output.innerHTML += '<p class="win"><strong>' + user + ' has won!</strong></p>'
+
+    //close room after 5 seconds
+    setTimeout(() => {
+        closeRoom()
+    }, 5000)
+})
+
+// ------------------------------------------------------- redirect to home when room is closed
+socket.on('closeRoom', () => {
+    window.location.href = '/'
+})
+
+// ------------------------------------------------------- when a pokemon gets sent from server
 socket.on('pokemon', data => {
     if (!data) {
         socket.emit('request', room)
     } else {
-        console.log(data.pokemon.name)
-        pokemonData = data
-        image.src = data.pokemon.img
-        image.classList.add('animate')
+        //show new pokemon after win text is gone
+        setTimeout(() => {
+            console.log(data.pokemon.name)
+            pokemonData = data
+            image.src = data.pokemon.img
+            image.classList.add('animate')
+            noWin = setTimeout(() => {
+                image.classList.remove('animate')
+                notCorrect()
+            }, guessTime)
+        }, winTextTime)
+
     }
 })
 
-// updates userlist, so scores and users
+// ------------------------------------------------------- updates userlist, so scores and users
 function updateList(data) {
     userList.innerHTML = ''
 

@@ -18,7 +18,8 @@ header {
     align-items: center;
     justify-content: flex-start;
     padding: 0 3em;
-    background-color: rgb(0, 34, 63);
+    background-color: rgb(1, 58, 113);
+    overflow: hidden;
 }
 
 header * {
@@ -39,28 +40,140 @@ main {
     grid-row-gap: 0px;
 }
 
-main>section {
+main#home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main#userform {
+    --size: 400px;
+    position: relative;
+    margin: 2em auto;
+    height: var(--size);
+    width: var(--size);
+    background: linear-gradient(135deg, rgb(237, 22, 20) 0% 47%, rgb(34, 34, 36) 47% 53%, rgb(240, 240, 240) 53% 100%);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+}
+
+main#userform::before {
+    --dotsize: calc(var(--size) / 4.5);
+    position: absolute;
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    border: 5px solid rgb(34, 34, 36);
+    box-sizing: border-box;
+    content: '';
+    width: var(--dotsize);
+    height: var(--dotsize);
+    left: 50%;
+    top: 50%;
+    margin-left: calc(var(--dotsize) * -1 /2);
+    margin-top: calc(var(--dotsize) * -1 /2);
+}
+
+main#userform * {
+    text-decoration: none;
+    z-index: 2;
+}
+
+main#userform input {
+    background-color: rgb(240, 240, 240);
+    border: 2px solid rgb(34, 34, 36);
+    margin-bottom: 0.5em;
+}
+
+main>section:not(#rooms, #newroom) {
     position: absolute;
     width: 100%;
     height: 100%;
     max-height: 60vh;
 }
 
-main>section:not(#pokemon) {
+main>section:not(#pokemon, #rooms, #newroom) {
+    --background: rgb(202, 202, 202);
+    --border: rgb(51, 51, 51);
     border-radius: 5px;
-    background-color: rgb(202, 202, 202);
-    border: 5px solid rgb(51, 51, 51);
-    padding: 1em;
+    background-color: var(--background);
+    border: 5px solid var(--border);
+    padding: 0 1em;
     overflow-y: scroll;
 }
 
-#leaderboard,
 #rooms {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: auto;
+}
+
+#rooms a {
+    --size: 150px;
+    position: relative;
+    height: var(--size);
+    min-height: var(--size);
+    width: var(--size);
+    min-width: var(--size);
+    border-radius: 50%;
+    background: linear-gradient(rgb(237, 22, 20) 0% 47%, rgb(34, 34, 36) 47% 53%, rgb(240, 240, 240) 53% 100%);
+    border: 3px solid rgb(36, 36, 36);
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    padding-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#rooms a::before {
+    --dotsize: calc(var(--size) / 4.5);
+    position: absolute;
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    border: 5px solid rgb(34, 34, 36);
+    box-sizing: border-box;
+    content: '';
+    width: var(--dotsize);
+    height: var(--dotsize);
+    left: 50%;
+    top: 50%;
+    margin-left: calc(var(--dotsize) * -1 /2);
+    margin-top: calc(var(--dotsize) * -1 /2);
+}
+
+#newroom {
+    margin-top: 2em;
+    background: linear-gradient(-45deg, rgb(237, 22, 20) 0% 65%, rgb(34, 34, 36) 65% 85%, rgb(240, 240, 240) 85% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    height: 2em;
+    border-radius: 1em;
+    font-size: 2em;
+}
+
+#newroom a {
+    color: white;
+    text-decoration: none;
+}
+
+#leaderboard {
     position: relative;
     grid-area: 1 / 1 / 2 / 2;
 }
 
 #pokemon {
+    background-color: rgb(51, 51, 51);
     position: relative;
     grid-area: 1 / 2 / 2 / 3;
     height: auto;
@@ -83,35 +196,62 @@ main>section:not(#pokemon) {
     animation: pokemon 20s;
 }
 
+#winText {
+    position: absolute;
+    color: white;
+    text-align: center;
+    padding-top: 20%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 3em;
+    background-color: rgba(54, 54, 54, 0.5);
+    z-index: 10;
+}
+
 #pokemon #back {
     border-radius: 5px;
     border: 5px solid rgb(51, 51, 51);
     position: relative;
     max-height: 100%;
     max-width: 100%;
+    background-color: var(--border);
 }
 
 #chat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     grid-area: 1 / 3 / 2 / 4;
 }
 
+#chat h2, #leaderboard h2 {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 5px 0;
+    background-color: var(--background);
+}
+
 #form {
-    position: absolute;
+    align-self: flex-end;
+    position: sticky;
     display: flex;
     flex-direction: row;
     bottom: 0;
     left: 0;
     right: 0;
+    height: 10%;
+    width: 100%;
+    padding: 5px 0;
+    background-color: var(--background);
 }
 
-#rooms a:last-child {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2em;
-    background-color: rgb(44, 44, 44);
-    color: white;
+#message {
+    width: inherit;
 }
 
 #background-container {
