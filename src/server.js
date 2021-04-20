@@ -20,6 +20,9 @@ const {
     roomRedirect,
     joinRoom
 } = require('./server/redirect.js')
+const {
+    deleteRoom
+} = require('./server/rooms.js')
 
 // ----------------------------------------------------------------------------------------------- Express routing
 app
@@ -106,10 +109,29 @@ io.on('connection', (socket) => {
     // ------------------------------------------------------ When a user disconnects
     socket.on('disconnect', () => {
         let userId = socket.id
+        let user = userNames[userId]
         delete userNames[userId]
         sendUsers()
+
+        // set timeout to check users in room, timeout is for refresh
+        setTimeout(() => {
+            if (user) {
+                checkRoomCount(user)
+            }
+        }, 10000)
     })
 })
+
+// ----------------------------------------------------------------------------------------------- Checks amount of users in room
+function checkRoomCount(user) {
+    let data = user
+    // error prevention
+    if (!io.sockets.adapter.rooms.get(data.room)) {
+        console.log('no clients in ', data.room)
+        // delete empty room
+        deleteRoom(data.room)
+    }
+}
 
 // ----------------------------------------------------------------------------------------------- Send user list to clients
 function sendUsers(room) {
@@ -151,12 +173,13 @@ function modulateData(data, room) {
 }
 
 // ----------------------------------------------------------------------------------------------- Send current pokemon to new joined clients
-function sendPokemon(room) { let obj
+function sendPokemon(room) {
+    let obj
     pokemons.forEach(item => {
         if (item.room === room) {
             obj = item
         }
     })
-    
+
     io.sockets.in(room).emit('pokemon', obj)
 }
