@@ -59,6 +59,7 @@ http.listen(port, () => {
 // ----------------------------------------------------------------------------------------------- Global variable storage
 let userNames = {}
 let pokemons = []
+let noWinTimer // timeout
 
 // ----------------------------------------------------------------------------------------------- Socket events
 io.on('connection', (socket) => {
@@ -89,6 +90,8 @@ io.on('connection', (socket) => {
 
     // ------------------------------------------------------ When someone won a round
     socket.on('win', data => {
+        clearTimeout(noWinTimer)
+
         let userId = socket.id
         let roomName = data.room
         let score = Number(data.score)
@@ -106,10 +109,10 @@ io.on('connection', (socket) => {
         }
     })
 
-    socket.on('noWin', room => {
-        fetchNewPokemon(room)
-        io.sockets.in(room).emit('noWin')
-    })
+    // socket.on('noWin', room => {
+    //     fetchNewPokemon(room)
+    //     io.sockets.in(room).emit('noWin')
+    // })
 
     // ------------------------------------------------------ Request for new pokemon
     socket.on('request', data => {
@@ -168,6 +171,8 @@ function fetchNewPokemon(room) {
     fetch('https://pokeapi.co/api/v2/pokemon-form/' + (Math.floor(Math.random() * 898) + 1) + '/')
         .then(res => res.json())
         .then(res => modulateData(res, room))
+
+    setWinTimeout(room)
 }
 
 // ----------------------------------------------------------------------------------------------- Modulate fetched data
@@ -199,4 +204,11 @@ function sendPokemon(room) {
     })
 
     io.sockets.in(room).emit('pokemon', obj)
+}
+
+function setWinTimeout(room) {
+    noWinTimer = setTimeout(() => {
+        fetchNewPokemon(room)
+        io.sockets.in(room).emit('noWin')
+    }, 40000)
 }

@@ -6,6 +6,7 @@ let user = document.getElementById('user').innerHTML
 let userList = document.getElementById('userList')
 let message = document.getElementById('message')
 let form = document.getElementById('form')
+let button = document.querySelector('input[type=submit]')
 let output = document.getElementById('output')
 let pokemonField = document.getElementById('pokemon')
 let image = document.getElementById('imgP')
@@ -61,10 +62,6 @@ function addWin() {
     })
 }
 
-function notCorrect() {
-    socket.emit('noWin', room)
-}
-
 // ------------------------------------------------------- close current room and delete from server
 function closeRoom() {
     socket.emit('closeRoom', room)
@@ -98,6 +95,10 @@ socket.on('win', user => {
 })
 
 socket.on('noWin', () => {
+    message.disabled = true
+    button.disabled = true
+    image.classList.remove('animate')
+
     output.innerHTML += '<p class="win"><strong>Nobody has guessed correctly</strong></p>'
 
     let node = document.createElement('h3')
@@ -109,6 +110,8 @@ socket.on('noWin', () => {
 
     //remove win text after some time
     setTimeout(() => {
+        message.disabled = false
+        button.disabled = false
         let winText = document.getElementById('winText')
         winText.remove()
     }, winTextTime)
@@ -148,10 +151,6 @@ socket.on('pokemon', data => {
             pokemonData = data
             image.src = data.pokemon.img
             image.classList.add('animate')
-            noWin = setTimeout(() => {
-                image.classList.remove('animate')
-                notCorrect()
-            }, guessTime)
         }, winTextTime)
 
     }
