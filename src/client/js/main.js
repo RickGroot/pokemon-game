@@ -53,7 +53,7 @@ form.onsubmit = ((e) => {
 // ------------------------------------------------------- add a win to live users score
 function addWin() {
     // current score from document
-    let score = document.querySelector('.thisUser .score').innerHTML
+    let score = document.querySelector('.thisUser .score span').innerHTML
 
     socket.emit('win', {
         user: user,
@@ -78,6 +78,8 @@ socket.on('chat', data => {
 
 // ------------------------------------------------------- emit win message and popup
 socket.on('win', user => {
+    disableInput()
+
     output.innerHTML += '<p class="win"><strong>' + user + ' has guessed the Pokémon!</strong></p>'
 
     let node = document.createElement('h3')
@@ -89,17 +91,17 @@ socket.on('win', user => {
 
     //remove win text after some time
     setTimeout(() => {
+        enableInput()
         let winText = document.getElementById('winText')
         winText.remove()
     }, winTextTime)
 })
 
 socket.on('noWin', () => {
-    message.disabled = true
-    button.disabled = true
+    disableInput()
     image.classList.remove('animate')
 
-    output.innerHTML += '<p class="win"><strong>Nobody has guessed correctly</strong></p>'
+    output.innerHTML += '<p class="win"><strong>Nobody guessed correctly</strong></p>'
 
     let node = document.createElement('h3')
     let text = document.createTextNode('The Pokémon was ' + pokemonData.pokemon.name)
@@ -108,10 +110,9 @@ socket.on('noWin', () => {
     node.appendChild(text)
     pokemonField.appendChild(node)
 
-    //remove win text after some time
+    //remove text after some time
     setTimeout(() => {
-        message.disabled = false
-        button.disabled = false
+        enableInput()
         let winText = document.getElementById('winText')
         winText.remove()
     }, winTextTime)
@@ -119,6 +120,7 @@ socket.on('noWin', () => {
 
 // ------------------------------------------------------- whena user has won
 socket.on('gameWin', user => {
+    disableInput()
     let node = document.createElement('h3')
     let text = document.createTextNode(user + ' has won the game!')
 
@@ -169,6 +171,17 @@ function updateList(data) {
             me = 'user'
         }
 
-        userList.innerHTML += '<div class=' + me + '><p class="username">' + obj.userName + '</p><p class="score">' + obj.score + '</p></div>'
+        userList.innerHTML += '<div class=' + me + '><p class="username">' + obj.userName + '</p><p class="score">Score: <span>' + obj.score + '</span></p></div>'
     })
+}
+
+// ------------------------------------------------------- Enable and disable input field
+function disableInput() {
+    message.disabled = true
+    button.disabled = true
+}
+
+function enableInput() {
+    message.disabled = false
+    button.disabled = false
 }

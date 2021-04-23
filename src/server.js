@@ -109,11 +109,6 @@ io.on('connection', (socket) => {
         }
     })
 
-    // socket.on('noWin', room => {
-    //     fetchNewPokemon(room)
-    //     io.sockets.in(room).emit('noWin')
-    // })
-
     // ------------------------------------------------------ Request for new pokemon
     socket.on('request', data => {
         fetchNewPokemon(data)
@@ -168,7 +163,8 @@ function sendUsers(room) {
 
 // ----------------------------------------------------------------------------------------------- Fetches pokemon
 function fetchNewPokemon(room) {
-    fetch('https://pokeapi.co/api/v2/pokemon-form/' + (Math.floor(Math.random() * 898) + 1) + '/')
+    // max amount: 898
+    fetch('https://pokeapi.co/api/v2/pokemon-form/' + (Math.floor(Math.random() * 200) + 1) + '/')
         .then(res => res.json())
         .then(res => modulateData(res, room))
 
