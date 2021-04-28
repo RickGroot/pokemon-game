@@ -149,6 +149,7 @@ $ npm start
 - [x] Stop game after x amount of wins
 - [x] Show a win screen
 - [ ] Make everything responsive
+- [ ] Split up `socket.js` to multiple files
 
 # Licence
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
