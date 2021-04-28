@@ -149,7 +149,7 @@ socket.on('pokemon', data => {
     } else {
         //show new pokemon after win text is gone
         setTimeout(() => {
-            console.log(data.pokemon.name)
+            // console.log(data.pokemon.name)
             pokemonData = data
             image.src = data.pokemon.img
             image.classList.add('animate')

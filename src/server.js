@@ -142,7 +142,6 @@ function checkRoomCount(user) {
     let data = user
     // error prevention
     if (!io.sockets.adapter.rooms.get(data.room)) {
-        console.log('no clients in ', data.room)
         // delete empty room
         deleteRoom(data.room)
     }

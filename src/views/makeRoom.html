@@ -7,8 +7,8 @@
 
 <main id="userform">
     <h2>Kies een roomnaam</h2>
-    <form action="/room-redirect" method="post">
-        <input type="text" name="room" placeholder="Room name" required>
+    <form action="/room-redirect" method="post" autocomplete="off">
+        <input type="text" name="room" placeholder="Room name" maxlength="12" required>
         <input type="submit" value="Enter Room">
     </form>
 </main>
