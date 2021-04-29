@@ -62,11 +62,6 @@ function addWin() {
     })
 }
 
-// ------------------------------------------------------- close current room and delete from server
-function closeRoom() {
-    socket.emit('closeRoom', room)
-}
-
 // ---------------------------------------------------------------------------------------------------------- listen for events from server
 // ------------------------------------------------------- update userlist
 socket.on('userList', data => updateList(data))
@@ -172,6 +167,11 @@ function updateList(data) {
 
         userList.innerHTML += '<div class=' + me + '><p class="username">' + obj.userName + '</p><p class="score">Score: <span>' + obj.score + '</span></p></div>'
     })
+}
+
+// ------------------------------------------------------- close current room and delete from server
+function closeRoom() {
+    socket.emit('closeRoom', room)
 }
 
 // ------------------------------------------------------- Enable and disable input field
